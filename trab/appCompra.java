@@ -10,7 +10,7 @@ public class appCompra {
 		escolher();
 	}
 
-	public static void escolher(){
+	public static void escolher() {
 		String nomearq = "", nomearqResultado = "";
 		for (int i = 0; i <= 14; i++) {
 			for (int j = 0; j <= 3; j++) {
@@ -80,7 +80,8 @@ public class appCompra {
 			}
 		}
 	}
-	public static void rodar(String nomearq, String nomeResultado, int opc) {
+
+	public static void rodar(String nomearq, String nomeResultado, int escolheOrdena) {
 		cadCompra compra = new cadCompra();
 		double[] tempoMedio = new double[5];
 		double media = 0;
@@ -91,20 +92,19 @@ public class appCompra {
 			tempoInicial = System.nanoTime();
 
 			leArquivo(compra, nomearq);
-			nomeOrdena = ordena(compra, opc);
-			grava(compra, nomeResultado);
+			nomeOrdena = ordena(compra, escolheOrdena);
+			grava(nomeOrdena, compra, nomeResultado);
 
 			tempoFinal = System.nanoTime();
 			tempoMedio[i] = ((tempoFinal - tempoInicial) / 1e+9);
-			System.out.println(tempoMedio[i]);
-			//gravarResultado("Tempo de execução " + (i + 1) + " de " + nomearq + ": ", tempoMedio[i]);
+			System.out.println("Tempo medio de " + nomearq + " com algoritimo " + nomeOrdena + " : " + tempoMedio[i]);
 		}
 
 		for (int i = 0; i < tempoMedio.length; i++) {
 			media += tempoMedio[i];
 		}
 		media = media / tempoMedio.length;
-		gravarResultado("Tempo medio de " + nomearq + " do algoritimo "+nomeOrdena +": ", media);
+		gravarResultado("Tempo medio de " + nomearq + " do algoritimo " + nomeOrdena + ": ", media);
 	}
 
 	public static void leArquivo(cadCompra compra, String nomearq) {
@@ -127,9 +127,9 @@ public class appCompra {
 		}
 	}
 
-	public static String ordena(cadCompra compra, int opc) {
+	public static String ordena(cadCompra compra, int escolheOrdena) {
 		String nomeOrdena = "";
-		switch (opc) {
+		switch (escolheOrdena) {
 		case 0:
 			compra.insercaoDireta();
 			nomeOrdena = "Inserção direta";
@@ -147,16 +147,13 @@ public class appCompra {
 			nomeOrdena = "Quick Com Inserção";
 			break;
 		}
-		/*
-		 * for(int i = 0; i < compra.getVetCompra().size(); i++){
-		 * System.out.println(compra.get(i).getCliente().getCpf()); }
-		 */
 		return nomeOrdena;
 	}
 
-	public static void grava(cadCompra compra, String nomearq) {
+	public static void grava(String nomeOrdena, cadCompra compra, String nomearq) {
 		try {
-			GravaArquivo saida = new GravaArquivo(nomearq, false);
+			String grava = nomeOrdena + nomearq;
+			GravaArquivo saida = new GravaArquivo(grava, false);
 			for (int i = 0; i < compra.getVetCompra().size(); i++) {
 				saida.grava(compra.get(i).toString());
 			}
