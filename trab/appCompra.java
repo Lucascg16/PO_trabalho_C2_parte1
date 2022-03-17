@@ -2,8 +2,10 @@ package trab;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+
+import trab.EntradaSaida.GravaArquivo;
+import trab.EntradaSaida.LeArquivo;
 import trab.classes.cadCompra;
-import trab.io.*;
 
 public class appCompra {
 	public static void main(String[] args) {
@@ -12,7 +14,7 @@ public class appCompra {
 
 	public static void escolher() {
 		String nomearq = "", nomearqResultado = "";
-		for (int i = 0; i <= 14; i++) {
+		for (int i = 0; i <= 14; i++) {//esses for me deixam triste, mas eu não vou tirar eles
 			for (int j = 0; j <= 3; j++) {
 				switch (i) {
 				case 0:
@@ -114,14 +116,14 @@ public class appCompra {
 			compra.setVetCompra(arquivo.ler());
 			arquivo.fecha();
 		} catch (FileNotFoundException erro) {
-			InOut.MsgDeErro("ERRO", erro.getMessage());
+			System.out.println(erro.getMessage());
 			System.exit(1);
 		} catch (NumberFormatException erro) {
-			InOut.MsgDeErro("ERRO", erro.getMessage());
+			System.out.println(erro.getMessage());
 			arquivo.fecha();
 			System.exit(1);
 		} catch (ArrayIndexOutOfBoundsException erro) {
-			InOut.MsgDeErro("ERRO", erro.getMessage());
+			System.out.println(erro.getMessage());
 			arquivo.fecha();
 			System.exit(1);
 		}

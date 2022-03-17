@@ -1,9 +1,5 @@
-package trab.io;
-/**
- * @author Cinthia, Lucas Carlos Giacomin
- * 
- * TODO Classe para criar um objeto do tipo arquivo de leitura
- */
+package trab.EntradaSaida;
+
 import java.io.*;
 import java.util.*;
 import trab.classes.cliente;
@@ -12,11 +8,7 @@ import trab.classes.compra;
 
 public class LeArquivo {
 	private Scanner entrada;
-	/**
-	 * Construtor
-	 * @param nome => Nome do arquivo que sera aberto para leitura
-	 * @throws FileNotFoundException => Excecao se nao encontrar o arquivo
-	 */
+	
 	public LeArquivo (String nome) throws FileNotFoundException{
 		try{
 			this.entrada = new Scanner (new File (nome));
@@ -25,32 +17,17 @@ public class LeArquivo {
 			throw new FileNotFoundException ("ARQUIVO NAO ENCONTRADO");
 		}
 	}
-	 /**
-	  * Metodo para ler os dados contidos no arquivo
-	  * @return Vetor de Contas que serao lidas nesse metodo
-	  * @throws NoSuchElementException
-	  */
+
 	public ArrayList<compra> ler ()throws ArrayIndexOutOfBoundsException, NumberFormatException{
 		ArrayList<compra> compra = new ArrayList<>();
 		String linha;
-		// Enquanto tiver informacao na linha do cursor ele roda o while
-		while (this.entrada.hasNext()){
+		while (this.entrada.hasNext()){// Enquanto tiver informacao na linha do cursor ele roda o while
 			linha = this.entrada.nextLine();// pega a linha toda e joga na variavel linha
 			compra.add(separaDados(linha));// separa os dados e adiciona na lista de contas
 		}
 		return compra;
 	}
 
-	/**
-	 * Metodo para transformar uma linha do arquivo em um objeto
-	 * da classe Conta
-	 * @param linha => String contendo a linha do arquivo que sera transformada
-	 * @return => A conta criada a partir do linha passada
-	 * @throws NoSuchElementException => Excecao causada por elementos insuficientes
-	 * 					na String, durante a transformacao
-	 * @throws NumberFormatException => Excecao causada por transformar uma String
-	 * 					que nao tem apenas digitos em inteiro
-	 */
 	private compra separaDados (String linha)throws ArrayIndexOutOfBoundsException, NumberFormatException{
 		String[] dados=null;
 		double vale, valor;
@@ -78,10 +55,7 @@ public class LeArquivo {
 			throw new NumberFormatException ("NUMERO DA CONTA NAO E INTEIRO");
 		}
 	}
-	/**
-	 * Metodo para fechar o arquivo de leitura
-	 * @throws IllegalStateException => Excecao causada se nao conseguir fechar o arquivo.
-	 */
+	
 	public void fecha ()throws IllegalStateException{
 		try{
 			this.entrada.close();

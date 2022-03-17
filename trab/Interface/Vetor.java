@@ -1,7 +1,6 @@
 package trab.Interface;
 
 import java.util.Calendar;
-
 import trab.classes.compra;
 
 public interface Vetor {

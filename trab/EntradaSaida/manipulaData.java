@@ -1,4 +1,4 @@
-package trab.io;
+package trab.EntradaSaida;
 
 import java.util.Calendar;
 
@@ -18,13 +18,5 @@ public class manipulaData {
         data.set(ano, mes, dia);
 
         return data;
-    }
-    public static String formatar(Calendar data) {
-        String str = "";
-
-        str += data.get(Calendar.DATE) + "/" +
-                (data.get(Calendar.MONTH) + 1) + "/" +
-                data.get(Calendar.YEAR);
-        return str;
     }
 }
