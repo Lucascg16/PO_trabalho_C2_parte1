@@ -160,8 +160,8 @@ public class appCompra {
 				saida.grava(compra.get(i).toString());
 			}
 			saida.fecha();
-		} catch (IOException excessao) {
-			System.out.println(excessao);
+		} catch (IOException excecao) {
+			System.out.println(excecao);
 		}
 	}
 
@@ -171,8 +171,8 @@ public class appCompra {
 			GravaArquivo saida = new GravaArquivo("resultado.txt", true);
 			saida.grava(mediaFinalString + "\n");
 			saida.fecha();
-		} catch (IOException excessao) {
-			System.out.println(excessao);
+		} catch (IOException excecao) {
+			System.out.println(excecao);
 		}
 	}
 }
